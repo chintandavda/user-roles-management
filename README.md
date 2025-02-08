@@ -1,6 +1,6 @@
-# **Event Management System**
+# **Roles Management**
 
-This is a **Full Stack Event Management System** built with:
+This is a **Full Stack Roles Management App** built with:
 
 -   **Backend**: Django REST Framework (DRF)
 -   **Frontend**: React.js with Ant Design
@@ -22,7 +22,7 @@ This is a **Full Stack Event Management System** built with:
 ### **1.1 Clone the Repository**
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/chintandavda/user-roles-management.git
 cd backend
 ```
 
@@ -117,7 +117,7 @@ npm start
 ### **Backend**
 
 -   Django REST Framework
--   PostgreSQL / SQLite
+-   SQLite
 -   JWT Authentication
 -   CORS & Middleware
 
