@@ -38,11 +38,29 @@ const ViewRequests = () => {
             <Table
                 dataSource={requests}
                 columns={[
-                    { title: "Client", dataIndex: "client", key: "client" },
                     {
-                        title: "Changes",
+                        title: "Client",
+                        dataIndex: "client",
+                        key: "client",
+                        render: (client) =>
+                            client
+                                ? `${client.username} (${client.email})`
+                                : "Unknown",
+                    },
+                    {
+                        title: "Task",
                         dataIndex: "requested_changes",
-                        key: "requested_changes",
+                        key: "task",
+                        render: (requested_changes) =>
+                            requested_changes.task || "N/A",
+                    },
+                    {
+                        title: "Description",
+                        dataIndex: "requested_changes",
+                        key: "description",
+                        render: (requested_changes) =>
+                            requested_changes.description ||
+                            "No description provided",
                     },
                     { title: "Status", dataIndex: "status", key: "status" },
                     {
@@ -70,6 +88,7 @@ const ViewRequests = () => {
                         ),
                     },
                 ]}
+                rowKey="id"
             />
         </Card>
     );

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser
+from .models import CustomUser, ChangeRequest
 
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
@@ -15,3 +15,10 @@ class CustomUserAdmin(UserAdmin):
     )
 
 admin.site.register(CustomUser, CustomUserAdmin)
+
+@admin.register(ChangeRequest)
+class ChangeRequestAdmin(admin.ModelAdmin):
+    list_display = ('id', 'client', 'requested_changes', 'status', 'created_at')
+    list_filter = ('status', 'created_at')
+    search_fields = ('client__username',)
+    ordering = ('-created_at',)

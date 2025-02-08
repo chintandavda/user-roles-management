@@ -63,10 +63,24 @@ class ClientDetailSerializer(serializers.ModelSerializer):
 
 
 class ChangeRequestSerializer(serializers.ModelSerializer):
+    client = serializers.SerializerMethodField()  # Get client details
+    requested_changes = serializers.SerializerMethodField()  # Format requested changes
+
     class Meta:
         model = ChangeRequest
-        fields = ['id', 'requested_changes', 'status', 'created_at']
-        read_only_fields = ['id', 'status', 'created_at']
+        fields = ['id', 'client', 'requested_changes', 'status', 'created_at']
+
+    def get_client(self, obj):
+        """Return client username and email"""
+        return {"id": obj.client.id, "username": obj.client.username, "email": obj.client.email}
+
+    def get_requested_changes(self, obj):
+        """Format requested changes into task & description"""
+        changes = obj.requested_changes
+        return {
+            "task": changes.get("task", "N/A"),
+            "description": changes.get("description", "No description provided"),
+        }
 
 
 class ClientDashboardSerializer(serializers.ModelSerializer):

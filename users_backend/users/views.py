@@ -26,7 +26,6 @@ class CustomLoginView(TokenObtainPairView):
     def post(self, request, *args, **kwargs):
         username = request.data.get("username")
         password = request.data.get("password")
-        print(username, password)
         user = authenticate(username=username, password=password)
 
         if user:
@@ -166,14 +165,15 @@ class UpdateChangeRequestStatus(APIView):
 
         change_request = get_object_or_404(ChangeRequest, id=request_id, client__rm=request.user)
 
-        status = request.data.get("status")
-        if status not in ["approved", "rejected"]:
+        new_status = request.data.get("status")  # Renamed variable to avoid conflict
+        if new_status not in ["approved", "rejected"]:
             return Response({"error": "Invalid status"}, status=status.HTTP_400_BAD_REQUEST)
 
-        change_request.status = status
+        change_request.status = new_status
         change_request.save()
 
-        return Response({"message": f"Request {status} successfully"}, status=status.HTTP_200_OK)
+        return Response({"message": f"Request {new_status} successfully"}, status=status.HTTP_200_OK)
+
 
 
 
