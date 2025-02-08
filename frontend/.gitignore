@@ -1,0 +1,20 @@
+# Ignore Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# Ignore build files
+build/
+dist/
+
+# Ignore environment variables
+.env
+.env.local
+.env.development
+.env.production
+
+# Ignore editor/IDE settings
+.vscode/
+.idea/
+.DS_Store
